@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/images/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second-Aid</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/form-styles.css"> <!-- Add a new CSS file for form styling -->
+    <script src="/static/js/main.js"></script>
+   
+</head>
+<style>
+    body{
+        background-color: #BEE3F8;
+    }
+</style>
+<body>
+    <div class="logo-container">
+        <img src="/static/images/logo.png" alt="Second-Aid Logo">
+    </div>
+    <div class="form-container">
+        <!-- Add a form for questions and consent -->
+        <form class="question-form">
+            <p class="question">1. What's your name?</p>
+            <input type="text" name="name" required class="input-field">
+
+            <p class="question">2. What's your gender?</p>
+            <input type="radio" name="gender" value="Male" class="radio-input"> Male
+            <input type="radio" name="gender" value="Female" class="radio-input"> Female
+            <input type="radio" name="gender" value="Other" class="radio-input"> Other
+
+            <p class="question">3. What's your age?</p>
+            <input type="number" name="age" required class="input-field">
+
+            <p class="question">4. For how many days the symptoms been present?</p>
+            <input type="text" name="symptoms_duration" required class="input-field">
+
+           
+            <label class="consent-label">
+                <input type="checkbox" name="consent" required class="checkbox-input"> I consent to data collection and analysis.
+            </label>
+
+            <div class="submit-container">
+                <a onclick="location.href='detect';" type="submit" value="Submit" class="submit-button">Submit </a>
+            </div>
+        </form>
+    </div>
+    
+
+    <!-- <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "5TjrjRHlkOQAKbrxxremK",
+            domain: "www.chatbase.co"
+        }
+    </script>
+    <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="5TjrjRHlkOQAKbrxxremK"
+        domain="www.chatbase.co"
+        defer>
+    </script> -->
+</body>
+
+</html>
