@@ -1,161 +1,159 @@
-let uploadButton = document.getElementById
-  ("upload");
-let chosenImage = document.getElementById
-  ("chosen-image");
-var resultContainer = document.getElementById('result-container');
+const uploadButton = document.getElementById('upload');
+const chosenImagePreview = document.getElementById('chosen-image-preview');
+const heroImage = document.getElementById('chosen-image');
+const heroPlaceholder = document.getElementById('hero-placeholder');
+const previewCaption = document.getElementById('preview-caption');
+const resultContainer = document.getElementById('result-container');
+const errorContainer = document.getElementById('error-container');
+const loadingPanel = document.getElementById('loading-spinner');
 
+// Debug: log missing elements
+if (!heroImage) console.warn('Missing #chosen-image');
+if (!heroPlaceholder) console.warn('Missing #hero-placeholder');
+if (!chosenImagePreview) console.warn('Missing #chosen-image-preview');
+if (!previewCaption) console.warn('Missing #preview-caption');
 
-resultContainer.style.display = "none"
-uploadButton.onchange = () => {
-  let reader = new FileReader();
-  reader.readAsDataURL(uploadButton.files[0]);
-  reader.onload = () => {
-    chosenImage.setAttribute("src", reader.result);
-
+function resetPanels() {
+  if (resultContainer) {
+    resultContainer.innerHTML = '';
+    resultContainer.classList.remove('active');
+  }
+  if (errorContainer) {
+    errorContainer.innerHTML = '';
+    errorContainer.classList.remove('active');
+  }
+  if (loadingPanel) {
+    loadingPanel.classList.remove('active');
   }
 }
 
-hideLoadingSpinner()
+function resetPreview() {
+  if (heroImage) heroImage.style.display = 'none';
+  if (chosenImagePreview) chosenImagePreview.style.display = 'none';
+  if (heroPlaceholder) heroPlaceholder.style.display = 'flex';
+  if (previewCaption) previewCaption.style.display = 'none';
+}
+
+// Only initialize if DOM is ready
+if (uploadButton && resultContainer && errorContainer && loadingPanel) {
+  resetPreview();
+  resetPanels();
+}
+
+if (uploadButton) {
+  uploadButton.addEventListener('change', () => {
+  const file = uploadButton.files[0];
+  if (!file) {
+    resetPreview();
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    if (chosenImagePreview) chosenImagePreview.src = reader.result;
+    if (heroImage) heroImage.src = reader.result;
+    if (chosenImagePreview) chosenImagePreview.style.display = 'block';
+    if (heroImage) heroImage.style.display = 'block';
+    if (heroPlaceholder) heroPlaceholder.style.display = 'none';
+    if (previewCaption) previewCaption.style.display = 'block';
+  };
+});
+}
 
 function showLoadingSpinner() {
-  var spinner = document.getElementById('loading-spinner');
-  spinner.style.display = 'flex';
+  if (loadingPanel) loadingPanel.classList.add('active');
 }
 
 function hideLoadingSpinner() {
-  var spinner = document.getElementById('loading-spinner');
-  spinner.style.display = 'none';
+  if (loadingPanel) loadingPanel.classList.remove('active');
 }
 
 function displayResponse(response) {
-  // Get the result container element
-  // resultContainer.style.display = "flex"
-  resultContainer.style.cssText = `
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    /* Add more styles here */
-`;
-  resultContainer.style.marginTop = "22px"
-  // Clear the container
-  resultContainer.innerHTML = '';
+  resetPanels();
+  if (!resultContainer) return;
+  resultContainer.classList.add('active');
 
-  // Create the disease element
-  var diseaseElement = document.createElement('p');
-  diseaseElement.textContent = 'Disease: ' + response.disease;
-  diseaseElement.style.color = 'white';
-  diseaseElement.style.marginTop = '7px';
+  const diseaseBlock = document.createElement('div');
+  diseaseBlock.className = 'result-item';
+  diseaseBlock.innerHTML = `<strong>Disease</strong><span>${response.disease}</span>`;
 
-  // Create the accuracy element
-  var accuracyElement = document.createElement('p');
-  accuracyElement.textContent = 'Accuracy: ' + response.accuracy + " %";
-  accuracyElement.style.color = 'white';
-  accuracyElement.style.marginTop = '7px';
+  const accuracyBlock = document.createElement('div');
+  accuracyBlock.className = 'result-item';
+  accuracyBlock.innerHTML = `<strong>Confidence</strong><span>${response.accuracy}%</span>`;
 
-  // Create the medicine element
-  var medicineElement = document.createElement('p');
-  medicineElement.textContent = 'Medicine: ' + response.medicine;
-  medicineElement.style.color = 'white';
-  medicineElement.style.marginTop = '7px';
+  const medicineBlock = document.createElement('div');
+  medicineBlock.className = 'result-item';
+  medicineBlock.innerHTML = `<strong>Recommended action</strong><span>${response.medicine}</span>`;
 
-  // Append the elements to the container
-  resultContainer.appendChild(diseaseElement);
-  resultContainer.appendChild(accuracyElement);
-  resultContainer.appendChild(medicineElement);
+  const detectedBlock = document.createElement('div');
+  detectedBlock.className = 'result-item';
+  detectedBlock.innerHTML = `<strong>Detected</strong><span>${response.detected ? 'Yes' : 'No'}</span>`;
 
-  var mapButton = document.createElement("button");
-  mapButton.className = "mapButton"; 
-  mapButton.innerHTML = "Look for Clinics";
-  var body = document.getElementsByTagName("body")[0];
-  body.appendChild(mapButton);
-
-  mapButton.addEventListener ("click", function() {
-  //window.open(map.html);
-  window.open('https://www.google.com/maps/search/Pharmacies');
-  });
-
-  //document.getElementById(results).hidden=true;
+  resultContainer.appendChild(diseaseBlock);
+  resultContainer.appendChild(accuracyBlock);
+  resultContainer.appendChild(medicineBlock);
+  resultContainer.appendChild(detectedBlock);
 }
 
 function displayError(message) {
-  // Get the error container element
-  var errorContainer = document.getElementById('error-container');
-
-  // Set the error message
-  // Clear previous error messages
-  errorContainer.innerHTML = '';
-
-  // Create the <h4> element
-  var errorMessageElement = document.createElement('h4');
-
-  // Apply styles to the <h4> element
-  errorContainer.style.marginTop = '55px';
-  errorMessageElement.style.color = 'red';
-  errorMessageElement.style.backgroundColor = 'transparent';
-
-
-
-  errorMessageElement.textContent = message;
-
-  // Append the <h4> element to the error container
-  errorContainer.appendChild(errorMessageElement);
-
-
+  resetPanels();
+  if (!errorContainer) return;
+  errorContainer.classList.add('active');
+  errorContainer.textContent = message;
 }
-function submitForm() {
-  var form = document.getElementById('uploadForm');
-  var formData = new FormData(form);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/detect', true);
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      alert(xhr.responseText);
-    } else {
-      alert('Error occurred while uploading the file.');
-    }
-  };
-  xhr.send(formData);
-}
 function detectFunction() {
-  // Show loading spinner
+  const fileInput = document.getElementById('upload');
+  if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+    displayError('Please choose an image before clicking Analyze Image.');
+    return;
+  }
+
+  console.log('Starting detection with file:', fileInput.files[0].name, 'Size:', fileInput.files[0].size);
+  resetPanels();
   showLoadingSpinner();
 
-  // Get the form and the selected file
-  var form = document.getElementById('uploadForm');
-  var fileInput = document.getElementById('upload');
-
-  // Create a FormData object and append the selected file
-  var formData = new FormData();
+  const formData = new FormData();
   formData.append('file', fileInput.files[0]);
 
-  // Send a POST request to the server
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('POST', '/detect', true);
+  
+  // Timeout after 60 seconds
+  xhr.timeout = 60000;
+  
   xhr.onload = function () {
+    console.log('Response received. Status:', xhr.status);
+    hideLoadingSpinner();
     if (xhr.status === 200) {
-      // Hide loading spinner
-      hideLoadingSpinner();
-
-      // Parse the response JSON
-      var response = JSON.parse(xhr.responseText);
-
-      // Display the response
+      const response = JSON.parse(xhr.responseText);
+      console.log('Parsed response:', response);
       displayResponse(response);
     } else {
-      // Hide loading spinner
-      hideLoadingSpinner();
-
-      var response = JSON.parse(xhr.responseText);
-
-
-      // Show an error message
-      displayError('Error: ' + response.message);
-      setTimeout(() => {
-        displayError('');
-
-      }, 1000);
+      console.error('Error response:', xhr.responseText);
+      let response = {};
+      try {
+        response = JSON.parse(xhr.responseText);
+      } catch (err) {
+        response.message = 'Unable to analyze the image. Please try again.';
+      }
+      displayError(response.message ? 'Error: ' + response.message : 'Unable to analyze the image.');
     }
   };
+  
+  xhr.onerror = function () {
+    console.error('Network error occurred');
+    hideLoadingSpinner();
+    displayError('A network error occurred. Please try again.');
+  };
+  
+  xhr.ontimeout = function () {
+    console.error('Request timeout after 60 seconds');
+    hideLoadingSpinner();
+    displayError('Request timed out. The server took too long to respond. Please try again.');
+  };
+  
+  console.log('Sending FormData with file to /detect endpoint');
   xhr.send(formData);
 }

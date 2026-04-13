@@ -28,22 +28,22 @@
     </a>
     <div class="center">
         <h1>Sign in</h1>
-        <form action="dashboard" method="post">
+        <form action="/dashboard" method="post">
             <label for="E-mail">E-mail</label><br>
-            <input id="E-mail" type="text" placeholder="Please enter your email"> <br>
+            <input id="E-mail" name="email" type="text" placeholder="Please enter your email" required> <br>
 
             <label for="password">Password</label><br>
-            <input id="password" type="password" placeholder="Please enter your password"><br>
+            <input id="password" name="password" type="password" placeholder="Please enter your password" required><br>
             <div class="btn_div">
 
-                <button id="btn" onclick="location.href='welcome.html';">Login</button>
+                <button id="btn" type="submit">Login</button>
                 <div class="singup_link">
                     <h3> Not a member?
                     </h3>
                     <a href="/signup">Sign Up here</a>
                 </div>
             </div>
-
+        </form>
     </div>
     <footer class="bg-blue-900 rounded-lg shadow dark:bg-gray-900 m-4" style="width: 100%;">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -72,9 +72,6 @@
         </div>
     </footer>
 
-
-
-    </form>
     <!-- <script>
         window.embeddedChatbotConfig = {
         chatbotId: "5TjrjRHlkOQAKbrxxremK",

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second-Aid | Pricing</title>
+    <link rel="shortcut icon" href="/static/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" />
+    <style>
+        body {
+            background-color: #eef6ff;
+        }
+        .pricing-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+        .pricing-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.75rem;
+        }
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            color: #1d4ed8;
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 1.5rem;
+        }
+        .pricing-card li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .pricing-card li svg {
+            margin-right: 0.75rem;
+            color: #16a34a;
+            min-width: 20px;
+        }
+        .pricing-card .button-link {
+            display: inline-block;
+            padding: 0.9rem 1.5rem;
+            border-radius: 999px;
+            background: #1d4ed8;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .site-nav a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .site-nav a.active {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-page">
+        <header class="pricing-header">
+            <a href="/">
+                <img src="/static/images/logo.png" alt="Second-Aid logo" style="height: 72px;" />
+            </a>
+            <h1>Pricing Plans</h1>
+            <p>Choose the plan that best fits your skin diagnosis workflow.</p>
+            <nav class="site-nav">
+                <a href="/">Home</a>
+                <a href="/detect">Detect</a>
+                <a href="/signin">Sign In</a>
+                <a href="/signup">Sign Up</a>
+            </nav>
+        </header>
+
+        <div class="pricing-cards">
+            <section class="pricing-card">
+                <h3>Basic</h3>
+                <p class="price">Free</p>
+                <ul>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Detect 7 common skin diseases</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Access to basic AI diagnosis</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Clinic mapping support</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Free forever</li>
+                </ul>
+                <a href="/signin" class="button-link">Get Started</a>
+            </section>
+
+            <section class="pricing-card">
+                <h3>Pro</h3>
+                <p class="price">₹599<span style="font-size: 0.8rem; color: #475569;">/year</span></p>
+                <ul>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Detect 200 diseases</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Unlimited chatbot prompts</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>24/7 premium support</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Free updates for 24 months</li>
+                </ul>
+                <a href="/signin" class="button-link">Upgrade</a>
+            </section>
+
+            <section class="pricing-card">
+                <h3>Consultation</h3>
+                <p class="price">₹1499<span style="font-size: 0.8rem; color: #475569;">/year</span></p>
+                <ul>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Detect unlimited diseases</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>24/7 doctor support</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated consultation access</li>
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Free updates for 36 months</li>
+                </ul>
+                <a href="/signup" class="button-link">Contact Sales</a>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

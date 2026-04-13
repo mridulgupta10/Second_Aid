@@ -16,11 +16,35 @@
     body{
         background-color: #BEE3F8;
     }
+    .welcome-banner {
+        max-width: 720px;
+        margin: 0 auto 1.5rem;
+        padding: 1.25rem 1.5rem;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid #cbd5e1;
+        border-radius: 1rem;
+        text-align: center;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    }
+    .welcome-banner h2 {
+        margin: 0 0 0.5rem;
+        color: #0f172a;
+    }
+    .welcome-banner p {
+        margin: 0;
+        color: #475569;
+    }
 </style>
 <body>
     <div class="logo-container">
         <img src="/static/images/logo.png" alt="Second-Aid Logo">
     </div>
+    {% if user_name %}
+    <div class="welcome-banner">
+        <h2>Welcome, {{ user_name }}!</h2>
+        <p>You're ready to proceed to skin detection.</p>
+    </div>
+    {% endif %}
     <div class="form-container">
         <!-- Add a form for questions and consent -->
         <form class="question-form">
@@ -44,7 +68,7 @@
             </label>
 
             <div class="submit-container">
-                <a onclick="location.href='detect';" type="submit" value="Submit" class="submit-button">Submit </a>
+                <a href="/detect" class="submit-button">Submit</a>
             </div>
         </form>
     </div>
